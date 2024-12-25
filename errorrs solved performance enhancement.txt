@@ -1,0 +1,68 @@
+Certainly! Here are the solutions for the errors encountered during your project, explained theoretically:
+
+### 1. Image Corruption Problem
+**Problem:** Images in the dataset were corrupted or paths were incorrect, causing errors during data loading.
+
+**Solution:** Implement error handling using `try-catch` blocks to manage exceptions. This ensures that corrupted images or incorrect paths do not halt the entire process. If an image is corrupted or the path is wrong, the error handling code skips that image and continues processing the rest.
+
+### 2. Image Insufficiency Problem
+**Problem:** When selecting random images using `random.sample()`, an error occurs if there aren't enough images available.
+
+**Solution:** Use the `min()` function to handle insufficient images. Before sampling images, check the number of available images. If the number of requested images exceeds the available images, adjust the sample size to the available number. This prevents errors due to insufficient data.
+
+### 3. Filepath Error
+**Problem:** Keras expects model filepaths to end with `.keras` instead of the older `.h5` format.
+
+**Solution:** Update the model save path to use the `.keras` extension. This ensures compatibility with the latest Keras versions. The newer format is designed to work seamlessly with the current Keras library functions.
+
+### 4. Empty Filenames List Error
+**Problem:** Attempting to split an empty dataset causes a ValueError.
+
+**Solution:** Before performing the split, check if the `filenames` list contains any data. If the list is empty, print an appropriate message and avoid performing the split. This prevents errors due to trying to split an empty dataset.
+
+### 5. Undefined Variables Error
+**Problem:** Variables `train_filenames`, `val_filenames`, and `test_filenames` were not defined before being used.
+
+**Solution:** Ensure that these variables are defined and assigned values before using them. Check that the dataset split (e.g., using `train_test_split`) is successfully executed, and the variables are correctly initialized. This prevents `NameError` due to undefined variables.
+
+### 6. Process Path or AUTOTUNE Not Defined
+**Problem:** Functions or constants like `process_path` or `AUTOTUNE` were not defined before use.
+
+**Solution:** Define the `process_path` function to specify how each dataset element is processed. Set `AUTOTUNE` using `tf.data.AUTOTUNE` to optimize dataset processing. Ensuring these definitions exist prevents errors related to undefined functions or constants.
+
+### 7. OutOfRangeError in Data Iteration
+**Problem:** The dataset iterator reaches the end, causing an `OutOfRangeError`.
+
+**Solution:** Ensure that the dataset is not fully iterated or empty before attempting to get the next batch of data. Manage the iteration process to handle the end of the dataset gracefully, preventing errors due to no more data being available.
+
+### 8. Undefined `Test_IMG_COUNT` Variable
+**Problem:** `Test_IMG_COUNT` was used without being defined.
+
+**Solution:** Define `Test_IMG_COUNT` with an appropriate value representing the number of images to process from the test dataset. Assign a value to `Test_IMG_COUNT` before using it in functions, preventing `NameError` due to undefined variables.
+
+### 9. TypeError: Filename Expected to be String
+**Problem:** File paths in the dataset were interpreted as floats instead of strings, causing a `TypeError`.
+
+**Solution:** Ensure that file paths are correctly passed as strings when creating the dataset. Check that the dataset contains proper string paths and that these paths are correctly interpreted by TensorFlow functions, preventing type mismatches.
+
+### 10. Undefined `weight_classes` Function
+**Problem:** The function `weight_classes()` was not defined or imported.
+
+**Solution:** Define the `weight_classes()` function or import it if it comes from an external library. Ensure that the function is correctly implemented or imported to prevent `NameError` due to undefined functions.
+
+### 11. Undefined or Incorrectly Defined `fit_model` Function
+**Problem:** The custom function `fit_model()` was not defined or its definition didn't match how it was being called.
+
+**Solution:** Either define the `fit_model()` function correctly to accept parameters like `Epochs`, `callbacks`, and `class_weight`, or use `model.fit()` directly. Ensure that parameter names match the function signature to prevent errors due to undefined or incorrectly defined functions.
+
+### 12. Output Shape Mismatch
+**Problem:** There was a mismatch between the shape of the model's output and the target labels.
+
+**Solution:** Ensure that the shapes of the model's output and the target labels match. This may involve adjusting the model architecture or the target label formatting to ensure compatibility, preventing shape mismatch errors.
+
+### 13. Unequal Splitting of Data
+**Problem:** Splitting the dataset using `train_test_split()` fails if the dataset is empty.
+
+**Solution:** Before attempting to split the dataset, check if there are any samples available. If the dataset is empty, avoid performing the split and handle the scenario gracefully, preventing errors due to splitting an empty dataset.
+
+These theoretical solutions address common issues encountered during model training and dataset handling, ensuring smoother execution and preventing common errors.
