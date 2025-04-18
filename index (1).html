@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid 19 Detection using CT scans</title>
+</head>
+<body>
+    <h1>Upload new file</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file1" accept=".png, .jpg, .jpeg" required> <!-- Required to prevent empty submissions -->
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if result %}
+        <h2>{{ result }}</h2>
+    {% endif %}
+
+    {% if image_path %}
+        <h3>Uploaded Image:</h3>
+        <img src="{{ image_path }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    {% endif %}
+    
+</body>
+</html>
